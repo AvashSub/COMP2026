@@ -42,23 +42,18 @@ for a piece of deeper computational work, something you're interested in and pro
 
 **Presentation (10%):** You will have ten minutes to present one of the projects in the last class. This is an opportunity for you to tell us something you're excited about!
 
-**Manual-day submissions (20%):** Each Manual (Tuesday) session gives you several problems to get hands-on experience with the topic of the week. A subset of the problems from five of those sessions will be submitted to test your understanding. Since these are done during the manual session they are **agent-free**: no LLMs, no autocomplete, just you and the problem. To allow for a hiccup **your lowest score will be dropped,** which can be due to a missed class, should your schedule require it. There are no make-ups. We will wait a few weeks to do one, so you can get the hand of things.
+**Manual-day submissions (20%):** Each manual (Tuesday) session gives you several problems to get hands-on experience with the topic of the week. A subset of the problems from five of those sessions will be submitted to test your understanding. Since these are done during the manual session they are **agent-free**: no LLMs, no autocomplete, just you and the problem. To allow for a hiccup **your lowest score will be dropped,** which can be due to a missed class, should your schedule require it. There are no make-ups. We will wait a few weeks to do one, so you can get the hang of things.
 
-**Participation (20%):** This is a hands-on, in-class course — the Manual and agentic
+**Participation (20%):** This is a hands-on, in-class course — the manual and agentic
 sessions *happen in the room*. Showing up and engaging with the work is a real part of
-the grade. If you're here and participating, this is easy points; if you're not,
-you'll miss the part of the course that actually teaches the skill. I'm looking for attendance, engagement, and growth in your abilities throughout the course. To be clear: I am hoping this course will be very fun, so hopefully participation is not an issue! 
+the grade. I'm looking for attendance, engagement, and growth in your abilities throughout the course. To be clear: I am hoping this course will be very fun, so hopefully participation is not an issue! 
 
-**A note on agents and honesty:** The whole point of the Friday sessions is to use
-coding agents, so for the portfolio, use them freely — that's a skill I want you to
-build. But the *analysis* and the *checking* have to be yours: a portfolio entry is
-only worth something if you've convinced yourself the physics is right and you can
-explain why. Your self-guided submissions are the opposite — agent-free, no LLMs, just you. In past
-years people were caught with identical code, or nearly identical code with the
-variables renamed; don't. First offense is a zero; a second offense leads to a
-failing grade and an academic integrity violation. Regarding language models more
-broadly: use them, but still *think*. The self-guided submissions will be hard if
-you've let an agent do all the work.
+**A note on agents and honesty:** On the portfolio, use agents freely — that's a
+skill I want you to build — but drive them deliberately: say what you want, read
+what comes back, and check it against something you already know rather than
+trusting code because it runs. The *analysis* and the *verification* are yours,
+and an entry is only worth something if you can explain why you believe the answer
+and where it would break. 
 
 # Course Material and Calendar
 
