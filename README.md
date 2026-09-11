@@ -83,14 +83,13 @@ Details may change, but the current plan for topics are:
 - (F) 11/6: Supervised Learning (Agentic)
 - (T) 11/10: Convolutions and Galaxy Classification (Manual)
 - (F) 11/13: Convolutions and Galaxy Classification (Agentic)
-- (T) 11/17: Reinforcement Learning (Manual)
-- (F) 11/20: Reinforcement Learning (Agentic)
-- (T) 11/24: Finding Structure in Data (Manual)
+- (T) 11/17: Finding Structure in Data (Manual)
+- (F) 11/20: Finding Structure in Data (Agentic)
+- (T) 11/24: Reinforcement Learning (Agentic)
 - (F) 11/27: **No class** (Thanksgiving / Black Friday)
 - (T) 12/1: Generative Models (Manual)
-- (F) 12/4: Finding Structure in Data (Agentic) — *pairs with 11/24; the break splits that week*
+- (F) 12/4: Generative Models (Agentic)
 - (T) 12/8: **Presentations** — ten minutes each on one portfolio project
-- (F) 12/11: Generative Models (Agentic) — *pairs with 12/1*
 
 **Finals week (12/14-12/20):** Portfolio due (date TBD).
 
