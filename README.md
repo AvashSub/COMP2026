@@ -123,11 +123,10 @@ It's 2026 and this is a course on computational physics, so coding agents and la
 language models (LLMs) are not just allowed — on Fridays they're the point. My one
 rule is that you use *free* tools, for fairness reasons, such as
 [ChatGPT](http://chat.openai.com), [GitHub Copilot](https://github.com/features/copilot),
-or [Claude](http://www.claude.ai) (free with a student account). A goal of this course
+or [Claude Code](http://www.claude.ai) (free with a student account). A goal of this course
 is to teach you to be a *productive* computational scientist, and that means using the
 best tools available. But — and this is the entire reason for the Tuesday/Friday
 split — these tools happily produce code that is wrong or that doesn't run, so you
 still have to know what you're doing. If you're just starting out, you may find it
 worth going agent-free for a while until you can tell good output from bad. Test it
-and see what works. And remember: the Manual sessions and your self-guided
-submissions are agent-free — that's where you prove you can do it yourself.
+and see what works. 
