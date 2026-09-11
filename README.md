@@ -127,4 +127,4 @@ and see what works.
 **A note on agents and honesty:** Use them deliberately — say what you want, read
 what comes back, and check it against something you already know. The *analysis*
 and the *verification* are yours: a portfolio entry is only worth something if you
-can explain why you believe the answer and where it breaks.
+can explain the techniques and why you believe the answer.
