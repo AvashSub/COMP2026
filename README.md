@@ -48,13 +48,6 @@ for a piece of deeper computational work, something you're interested in and pro
 sessions *happen in the room*. Showing up and engaging with the work is a real part of
 the grade. I'm looking for attendance, engagement, and growth in your abilities throughout the course. To be clear: I am hoping this course will be very fun, so hopefully participation is not an issue! 
 
-**A note on agents and honesty:** On the portfolio, use agents freely — that's a
-skill I want you to build — but drive them deliberately: say what you want, read
-what comes back, and check it against something you already know rather than
-trusting code because it runs. The *analysis* and the *verification* are yours,
-and an entry is only worth something if you can explain why you believe the answer
-and where it would break. 
-
 # Course Material and Calendar
 
 Details may change, but the current plan for topics are:
@@ -129,4 +122,9 @@ best tools available. But — and this is the entire reason for the Tuesday/Frid
 split — these tools happily produce code that is wrong or that doesn't run, so you
 still have to know what you're doing. If you're just starting out, you may find it
 worth going agent-free for a while until you can tell good output from bad. Test it
-and see what works. 
+and see what works.
+
+**A note on agents and honesty:** Use them deliberately — say what you want, read
+what comes back, and check it against something you already know. The *analysis*
+and the *verification* are yours: a portfolio entry is only worth something if you
+can explain why you believe the answer and where it breaks.
