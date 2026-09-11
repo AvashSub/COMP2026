@@ -40,7 +40,7 @@ You'll learn computational techniques applicable to many areas of physics, scien
 **Portfolio (50%):** At the end of the semester you will submit a portfolio, presented as a slick website (``github.io``) with three projects. The projects are the continuation of three Friday sessions of your choosing.  Each of those Fridays is a **seed**: a starting point
 for a piece of deeper computational work, something you're interested in and proud of. Alternatively, if you choose, one of the projects can be a similar difficult project carried out with a potential research advisor on a topic of your choosing. 
 
-**Presentation (10%):** You will have ten minutes to present one of the projects in the last class. This is an opportunity for you to tell us something you're excited about!
+**Presentation (10%):** You will have ten minutes to present one of the projects on **December 8**. This is an opportunity for you to tell us something you're excited about!
 
 **Manual-day submissions (20%):** Each manual (Tuesday) session gives you several problems to get hands-on experience with the topic of the week. A subset of the problems from five of those sessions will be submitted to test your understanding. Since these are done during the manual session they are **agent-free**: no LLMs, no autocomplete, just you and the problem. To allow for a hiccup **your lowest score will be dropped,** which can be due to a missed class, should your schedule require it. There are no make-ups. We will wait a few weeks to do one, so you can get the hang of things.
 
@@ -67,30 +67,30 @@ Details may change, but the current plan for topics are:
 - (F) 9/25: Numerical Differentiation and Integration (Agentic) 
 
 **Part 2: Computational Physics**
-- (T) 9/29: Classical Mechanics (Manual)
-- (F) 10/2: Classical Mechanics (Agentic)
-- (T) 10/6: Electrostatics (Manual)
-- (F) 10/9: Electrostatics (Agentic)
-- (T) 10/13: Quantum Mechanics (Manual)
-- (F) 10/16: Quantum Mechanics (Agentic)
-- (T) 10/20: Statistics and Monte Carlo (Manual)
-- (F) 10/23: Statistics and Monte Carlo (Agentic)
-- (T) 10/27: Statistical Mechanics and the Ising Model (Manual)
-- (F) 10/30: Statistical Mechanics and the Ising Model (Agentic)
-- (T) 11/3: Optimization and the Cosmological Constant (Manual)
-- (F) 11/6: Optimization and the Cosmological Constant (Agentic)
+- (T) 9/29: Mechanics and Electrostatics (Manual)
+- (F) 10/2: Mechanics and Electrostatics (Agentic)
+- (T) 10/6: Quantum Mechanics (Manual)
+- (F) 10/9: Quantum Mechanics (Agentic)
+- (T) 10/13: Statistics and Monte Carlo (Manual)
+- (F) 10/16: Statistics and Monte Carlo (Agentic)
+- (T) 10/20: Statistical Mechanics and the Ising Model (Manual)
+- (F) 10/23: Statistical Mechanics and the Ising Model (Agentic)
+- (T) 10/27: Optimization and the Cosmological Constant (Manual)
+- (F) 10/30: Optimization and the Cosmological Constant (Agentic)
 
 **Part 3: Machine Learning and Physics**
-- (T) 11/10: Supervised Learning (Manual)
-- (F) 11/13: Supervised Learning (Agentic)
-- (T) 11/17: Convolutions and Galaxy Classification (Manual)
-- (F) 11/20: Convolutions and Galaxy Classification (Agentic)
-- (T) 11/24: Reinforcement Learning (Agentic)
+- (T) 11/3: Supervised Learning (Manual)
+- (F) 11/6: Supervised Learning (Agentic)
+- (T) 11/10: Convolutions and Galaxy Classification (Manual)
+- (F) 11/13: Convolutions and Galaxy Classification (Agentic)
+- (T) 11/17: Reinforcement Learning (Manual)
+- (F) 11/20: Reinforcement Learning (Agentic)
+- (T) 11/24: Finding Structure in Data (Manual)
 - (F) 11/27: **No class** (Thanksgiving / Black Friday)
-- (T) 12/1: Finding Structure in Data (Manual)
-- (F) 12/4: Finding Structure in Data (Agentic)
-- (T) 12/8: Generative Models (Manual)
-- (F) 12/11: Generative Models (Agentic)
+- (T) 12/1: Generative Models (Manual)
+- (F) 12/4: Finding Structure in Data (Agentic) — *pairs with 11/24; the break splits that week*
+- (T) 12/8: **Presentations** — ten minutes each on one portfolio project
+- (F) 12/11: Generative Models (Agentic) — *pairs with 12/1*
 
 **Finals week (12/14-12/20):** Portfolio due (date TBD).
 
