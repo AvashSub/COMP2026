@@ -23,7 +23,7 @@ TA & Grader: Jacob March ``march.j@northeastern.edu``
 Specifically, each week will have a topic, split as:
 
 - **Tuesday** — the *manual session.* A lecture on essentials (~40 min) and associated manual coding portion, no agents (~60 min). This is where you build your coding muscles and essential understanding.
-- **Friday** — the *agentic session* (~100 min). You push a more advanced idea within the weekly topic as far as possible, using your deep thinking and coding agents.
+- **Friday** — the *agentic session* (~100 min). You push a more advanced idea within the weekly topic as far as possible, using your deep thinking and coding agents. I will give suggestions, but you are also free to choose your own. Portfolio topics must be of your choosing.
 
 I think the best version of your computational physics self know how to *think* about code, how to *implement essentials*, and how to *use agents* to push the results as a far as possible.
 
@@ -46,7 +46,7 @@ for a piece of deeper computational work, something you're interested in and pro
 
 **Participation (20%):** This is a hands-on, in-class course — the manual and agentic
 sessions *happen in the room*. Showing up and engaging with the work is a real part of
-the grade. I'm looking for attendance, engagement, and growth in your abilities throughout the course. To be clear: I am hoping this course will be very fun, so hopefully participation is not an issue! 
+the grade. I'm looking for attendance, engagement, ``git`` submissions every class, and growth in your abilities throughout the course. To be clear: I am hoping this course will be very fun, so hopefully participation is not an issue! 
 
 # Course Material and Calendar
 
