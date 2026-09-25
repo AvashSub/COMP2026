@@ -15,6 +15,7 @@ with independent numerical routines. Units: $\varepsilon_0 = 1$.
 ## Key results
 
 - **Flux (LHS):** equals $Q_{\rm enc}$ for every configuration tried; the error falls as $h^2$ (fitted slope $-2$).
+- **Euler vs midpoint:** `sphere_flux(..., rule='euler')` uses left-endpoint (Euler) sums. Because $\sin\theta$ vanishes at both poles, Euler becomes the trapezoid rule, so it is also $O(h^2)$, but its error is $-2\times$ the midpoint error.
 - **Charges outside:** zero net flux comes from cancellation (gross $\oint|\mathbf E\cdot\hat n|\,dA \neq 0$), not from zero field.
 - **Divergence (RHS):** the step sweep shows a minimum near $h \approx \epsilon^{1/3} \approx 6\times10^{-6}$.
   Truncation error $\propto h^2$ (slope $+2$) dominates at large $h$; roundoff $\propto \epsilon/h$ (slope $-1$) dominates at small $h$.
@@ -22,6 +23,7 @@ with independent numerical routines. Units: $\varepsilon_0 = 1$.
 - **Shape doesn't matter:** on the lumpy surface, only whether a charge is enclosed counts. A charge in a dent (inside the sphere, outside the surface) gives zero.
   For a set of mixed-sign blobs, flux, $\int\nabla\cdot\mathbf E\,dV$ and $\int\rho\,dV$ agree to $\sim 10^{-6}$.
 
-## Open issue
+## Fixed: RHS check 5
 
-`Gausslawproblem_rhs.py` check 5 fails. Its reference value $Q_{\rm enc}=1$ for the off-centre blob ignores the part of the Gaussian outside $R=2$. The numerics agree with each other ($\int\rho\,dV = 0.99963$), so the expected value needs fixing, not the code.
+It used to fail because its reference $Q_{\rm enc}=1$ for an off-centre blob ignored the Gaussian tail outside $R=2$.
+It now uses `enclosed_charge_offset()`, the exact enclosed charge for an off-centre Gaussian (a noncentral-$\chi$ CDF). All four columns agree to $5\times10^{-6}$.

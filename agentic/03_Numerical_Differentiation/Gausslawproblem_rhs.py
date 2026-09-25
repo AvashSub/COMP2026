@@ -23,7 +23,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from Gausslawproblem import (point_charge, gaussian_blob, enclosed_charge,
-                             superpose, sphere_flux)
+                             enclosed_charge_offset, superpose, sphere_flux)
 
 EPS = np.finfo(float).eps
 H_OPT = EPS ** (1 / 3)        # ~6.1e-6: the central-difference optimum from notebook 3
@@ -213,25 +213,32 @@ def check_configurations():
     """Geometry that symmetry does not solve for you.
 
     Off-centre, wholly outside (both sides must vanish by cancellation), and a
-    superposition where one blob is enclosed and one is not.
+    superposition where one blob is enclosed and one is not. Blobs this narrow
+    still leak charge through the surface -- the off-centre one sits 3.75 sigma
+    from its nearest point and has ~4e-4 of q outside -- so the reference is the
+    exact off-centre formula, not the total charge.
     """
     print("5. configurations where symmetry gives no shortcut")
     sigma = 0.4
     worst = 0.0
 
     E, rho = gaussian_blob(1.0, [0.5, 0, 0], sigma), gaussian_density(1.0, [0.5, 0, 0], sigma)
-    g = report("blob off-centre, enclosed", E, rho, 2.0, 1.0)
+    g = report("blob off-centre, enclosed", E, rho, 2.0,
+               enclosed_charge_offset(1.0, sigma, [0.5, 0, 0], 2.0))
     worst = max(worst, *g)
 
     E, rho = gaussian_blob(2.0, [5.0, 0, 0], sigma), gaussian_density(2.0, [5.0, 0, 0], sigma)
-    g = report("blob entirely outside", E, rho, 1.0, 0.0)
+    g = report("blob entirely outside", E, rho, 1.0,
+               enclosed_charge_offset(2.0, sigma, [5.0, 0, 0], 1.0))
     worst = max(worst, *g)
 
     E = superpose(gaussian_blob(2.0, [0.3, 0.2, 0.0], sigma),
                   gaussian_blob(-3.0, [6.0, 0.0, 0.0], sigma))
     rho = lambda r: (gaussian_density(2.0, [0.3, 0.2, 0.0], sigma)(r)
                      + gaussian_density(-3.0, [6.0, 0.0, 0.0], sigma)(r))
-    g = report("two blobs, +2 in and -3 out", E, rho, 2.0, 2.0)
+    g = report("two blobs, +2 in and -3 out", E, rho, 2.0,
+               enclosed_charge_offset(2.0, sigma, [0.3, 0.2, 0.0], 2.0)
+               + enclosed_charge_offset(-3.0, sigma, [6.0, 0.0, 0.0], 2.0))
     worst = max(worst, *g)
 
     print("   worst disagreement: %.2e" % worst)

@@ -48,34 +48,63 @@ def enclosed_charge(q, sigma, s):
     return q * (erf(u / np.sqrt(2)) - np.sqrt(2 / np.pi) * u * np.exp(-u**2 / 2))
 
 
+def enclosed_charge_offset(q, sigma, r0, R):
+    """Charge of a Gaussian blob centred at r0 inside the sphere |r| < R.
+
+    With d = |r0| > 0 and a, b = (R - d)/sigma, (R + d)/sigma, the enclosed
+    fraction is the CDF of a noncentral chi distribution with 3 degrees of freedom:
+
+        (1/2)[erf(a/sqrt2) + erf(b/sqrt2)] - sigma/(d sqrt(2 pi)) [e^{-a^2/2} - e^{-b^2/2}].
+
+    It tends to enclosed_charge() as d -> 0, but the second term is 0/0 at d = 0
+    exactly, so a centred blob must use enclosed_charge() instead.
+    """
+    d = np.linalg.norm(r0)
+    a, b = (R - d) / sigma, (R + d) / sigma
+    return q * (0.5 * (erf(a / np.sqrt(2)) + erf(b / np.sqrt(2)))
+                - sigma / (d * np.sqrt(2 * np.pi)) * (np.exp(-a**2 / 2) - np.exp(-b**2 / 2)))
+
+
 def superpose(*fields):
     return lambda r: sum(f(r) for f in fields)
 
 
 # ---------------------------------------------------------------- the LHS
 
-def sphere_grid(R, center, n_theta, n_phi):
-    """Midpoint quadrature nodes on a sphere: points, outward normals, weights.
+# where in each step the integrand is sampled, as a fraction of the step
+RULES = {'midpoint': 0.5,     # middle of each cell
+         'euler': 0.0}        # left endpoint: Euler's method applied to an integral
+
+
+def sphere_grid(R, center, n_theta, n_phi, rule='midpoint'):
+    """Quadrature nodes on a sphere: points, outward normals, weights.
 
     Parametrize by (theta, phi); the outward normal is the radial unit vector and
     dA = R^2 sin(theta) dtheta dphi. Midpoint sampling keeps every node off the
     poles, so no node is special. The rule is O(h^2) in theta; in phi the
     integrand is periodic, where midpoint sampling converges far faster, so the
     theta grid alone sets the error.
+
+    rule='euler' samples the left end of each step instead. Euler is normally
+    O(h), but the sin(theta) in dA makes the integrand vanish at both theta = 0
+    and theta = pi, and a left-endpoint sum with equal end values is exactly the
+    trapezoid rule -- O(h^2), with error -2x the midpoint error (check 7).
+    Its theta = 0 row sits on the pole, harmlessly: its weight is sin(0) = 0.
     """
     center = np.asarray(center, float)
+    shift = RULES[rule]
     dth, dph = np.pi / n_theta, 2 * np.pi / n_phi
-    TH, PH = np.meshgrid((np.arange(n_theta) + 0.5) * dth,
-                         (np.arange(n_phi) + 0.5) * dph, indexing='ij')
+    TH, PH = np.meshgrid((np.arange(n_theta) + shift) * dth,
+                         (np.arange(n_phi) + shift) * dph, indexing='ij')
     n = np.stack([np.sin(TH) * np.cos(PH),
                   np.sin(TH) * np.sin(PH),
                   np.cos(TH)], axis=-1)
     return center + R * n, n, np.sin(TH) * R**2 * dth * dph
 
 
-def sphere_flux(E, R, center=(0., 0., 0.), n_theta=200, n_phi=400):
+def sphere_flux(E, R, center=(0., 0., 0.), n_theta=200, n_phi=400, rule='midpoint'):
     """Net outward flux of E through a sphere of radius R. This is the LHS."""
-    pts, n, dA = sphere_grid(R, center, n_theta, n_phi)
+    pts, n, dA = sphere_grid(R, center, n_theta, n_phi, rule)
     return np.sum(np.sum(E(pts) * n, axis=-1) * dA)
 
 
@@ -228,6 +257,41 @@ def check_convergence_order():
     return ns, errs, slope
 
 
+def check_euler_vs_midpoint():
+    """Euler's method (left endpoint) against the midpoint rule, same grid.
+
+    Centred charge: E.n is constant, so the flux reduces to the rule applied to
+    int_0^pi sin(theta) dtheta = 2. Left endpoint with f(0) = f(pi) = 0 is the
+    trapezoid rule, whose error (-h^2/12)[f'(pi) - f'(0)] = +h^2/6 predicts a
+    relative error of exactly -pi^2 / (12 n_theta^2): Euler undershoots, where
+    midpoint overshoots by half as much (check 1). Off-centre, there is no closed
+    form, but the ratio of the two errors must still tend to -2, and both must
+    fit a slope of -2.
+    """
+    print("7. Euler (left endpoint) vs midpoint")
+    q = 1.0
+    E0, E1 = point_charge(q, [0, 0, 0]), point_charge(q, [0.4, 0.0, 0.0])
+    ns = np.array([16, 32, 64, 128, 256])
+    eu, mid = [], []
+    for n in ns:
+        rel = sphere_flux(E0, 1.0, n_theta=n, n_phi=2 * n, rule='euler') / q - 1
+        pred = -np.pi**2 / (12 * n**2)
+        eu.append(sphere_flux(E1, 1.0, n_theta=n, n_phi=2 * n, rule='euler') - q)
+        mid.append(sphere_flux(E1, 1.0, n_theta=n, n_phi=2 * n) - q)
+        print("   n_theta=%4d  centred: rel.err=%+.3e  predicted=%+.3e  |  off-centre: "
+              "euler=%+.3e  midpoint=%+.3e  ratio=%+.4f"
+              % (n, rel, pred, eu[-1], mid[-1], eu[-1] / mid[-1]))
+        assert abs(rel / pred - 1) < 0.01, "Euler error does not match the trapezoid prediction"
+    eu, mid = np.array(eu), np.array(mid)
+    s_eu = np.polyfit(np.log10(ns), np.log10(np.abs(eu)), 1)[0]
+    s_mid = np.polyfit(np.log10(ns), np.log10(np.abs(mid)), 1)[0]
+    print("   fitted slopes: euler %.3f, midpoint %.3f   (expect -2 for both)" % (s_eu, s_mid))
+    assert abs(s_eu + 2) < 0.1 and abs(s_mid + 2) < 0.1, "not second order"
+    assert abs(eu[-1] / mid[-1] + 2) < 0.01, "error ratio should tend to -2"
+    print("   same order; midpoint is 2x more accurate for the same work")
+    print("   OK\n")
+
+
 def make_figure(ns, errs, slope):
     q, sigma = 1.0, 1.0
     E = gaussian_blob(q, [0, 0, 0], sigma)
@@ -259,4 +323,5 @@ if __name__ == '__main__':
     check_off_center_and_superposition()
     check_partial_enclosure()
     ns, errs, slope = check_convergence_order()
+    check_euler_vs_midpoint()
     make_figure(ns, errs, slope)
