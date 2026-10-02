@@ -10,6 +10,7 @@ with independent numerical routines. Units: $\varepsilon_0 = 1$.
 | `Gausslawproblem.py` | **LHS.** Point-charge and Gaussian-blob fields; midpoint quadrature of the flux over a sphere. | `python3 Gausslawproblem.py` |
 | `Gausslawproblem_rhs.py` | **RHS.** $\nabla\cdot\mathbf E$ by central differences, integrated over the ball; compared with $\int\rho\,dV$ and the flux. | `python3 Gausslawproblem_rhs.py` |
 | `lumpy_surface.py` | Same chain on a non-spherical surface $r = R[1 + a f(\hat n)]$; $a=0$ is the sphere. | `python3 lumpy_surface.py` |
+| `half_ball.py` | Closed half ball: hemisphere dome + flat disk at $z=0$, meeting at a sharp edge. | `python3 half_ball.py` |
 | `gauss_viewer.py` | GUI: surface coloured by $\mathbf E\cdot\hat n$, E arrows, sliders for $R$ and bump amplitude $a$, live LHS / RHS / $Q_{\rm enc}$. | `python3 gauss_viewer.py` |
 
 ## Key results
@@ -22,6 +23,9 @@ with independent numerical routines. Units: $\varepsilon_0 = 1$.
 - **Point charges break the RHS:** $\rho$ is a delta function the grid never samples, so $\int\nabla\cdot\mathbf E\,dV \approx 0$ while the flux is $q$.
 - **Shape doesn't matter:** on the lumpy surface, only whether a charge is enclosed counts. A charge in a dent (inside the sphere, outside the surface) gives zero.
   For a set of mixed-sign blobs, flux, $\int\nabla\cdot\mathbf E\,dV$ and $\int\rho\,dV$ agree to $\sim 10^{-6}$.
+- **Half ball:** the dome alone is an open surface, and its flux is not $Q_{\rm enc}$. A charge in the lower half still sends 36% of its flux through the dome.
+  Adding the disk closes the surface and restores the law: the disk flux exactly cancels the dome flux for outside charges. The disk flux matches $q\,\Omega/4\pi$.
+  The sharp edge doesn't change the order ($h^2$), but a charge near the edge needs a finer grid to reach it.
 
 ## Fixed: RHS check 5
 
