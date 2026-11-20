@@ -1,0 +1,4 @@
+Complexity,Loss,Equation
+1,0.031724885,"1.372618"
+4,0.023975879,"sqrt(exp(cos(x0)))"
+5,2.1369705e-15,"sqrt(cos(x0) + 1.5)"

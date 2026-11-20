@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,0.9450497,"1.3336548"
+4,0.9404832,"sqrt(exp(cos(x0)))"
+5,0.91800094,"sqrt(cos(x0) + 1.402409)"
+7,0.9001063,"sqrt(cos(x0 + 0.43038836) + 1.4452232)"
+9,0.8840108,"sqrt(exp(cos(x0 + sin(exp(exp(x0))))))"
+10,0.85055995,"sqrt(exp(cos(x0 + sin(exp(exp(cos(x0)))))))"
+12,0.8329361,"sqrt(exp(cos((x0 + 0.2771464) + sin(exp(exp(cos(x0)))))))"
+13,0.8320241,"sqrt(exp(cos((x0 + 0.2771464) + sin(sin(exp(exp(cos(x0))))))))"
+14,0.81757116,"sqrt(exp(cos(x0 + (sin(exp(exp(cos(x0)))) + 0.29818383)))) * 1.0990155"
